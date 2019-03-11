@@ -3,7 +3,9 @@ package com.miage.altea.tp.trainer_api.service;
 import com.miage.altea.tp.trainer_api.bo.Trainer;
 import com.miage.altea.tp.trainer_api.repository.TrainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
@@ -12,6 +14,9 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Autowired
     private TrainerRepository trainerRepository;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     public TrainerServiceImpl(TrainerRepository trainerRepository) {
         this.trainerRepository = trainerRepository;
@@ -30,5 +35,11 @@ public class TrainerServiceImpl implements TrainerService {
     @Override
     public Trainer createTrainer(Trainer trainer) {
         return trainerRepository.save(trainer);
+    }
+
+    @Autowired
+    @Qualifier("trainerApiRestTemplate")
+    void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 }
