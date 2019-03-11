@@ -15,6 +15,9 @@ public class Trainer {
     @OneToMany(fetch= FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Pokemon> team;
 
+    @Column
+    private String password;
+
     public Trainer() {
     }
 
@@ -36,5 +39,13 @@ public class Trainer {
 
     public void setTeam(List<Pokemon> team) {
         this.team = team;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
