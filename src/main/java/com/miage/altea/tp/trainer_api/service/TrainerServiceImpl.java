@@ -15,9 +15,6 @@ public class TrainerServiceImpl implements TrainerService {
     @Autowired
     private TrainerRepository trainerRepository;
 
-    @Autowired
-    private RestTemplate restTemplate;
-
     public TrainerServiceImpl(TrainerRepository trainerRepository) {
         this.trainerRepository = trainerRepository;
     }
@@ -37,9 +34,4 @@ public class TrainerServiceImpl implements TrainerService {
         return trainerRepository.save(trainer);
     }
 
-    @Autowired
-    @Qualifier("trainerApiRestTemplate")
-    void setRestTemplate(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 }
